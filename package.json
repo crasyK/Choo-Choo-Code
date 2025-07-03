@@ -8,17 +8,34 @@
   },
   "categories": [
     "Other"
+  ],  
+  "activationEvents": [
+    "onCommand:gtfs-realtime-vscode.getTripDelay"
   ],
-  "activationEvents": [],
   "main": "./out/extension.js",
-  "contributes": {
+"contributes": {
     "commands": [
-      {
-        "command": "choo-choo-code.helloWorld",
-        "title": "Hello World"
-      }
-    ]
-  },
+        {
+            "command": "gtfs-realtime-vscode.getTripDelay",
+            "title": "GTFS: Fetch Trip Delay"
+        }
+    ],
+    "configuration": {
+        "title": "GTFS Realtime VSCode",
+        "properties": {
+            "gtfs-realtime-vscode.feedUrl": {
+                "type": "string",
+                "default": "https://realtime.gtfs.de/realtime-free.pb",
+                "description": "The full URL for the GTFS-realtime feed."
+            },
+            "gtfs-realtime-vscode.tripId": {
+                "type": "string",
+                "default": "",
+                "description": "The specific Trip ID to track (e.g., from a train schedule)."
+            }
+        }
+    }
+},
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
@@ -28,14 +45,19 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.101.0",
     "@types/mocha": "^10.0.10",
-    "@types/node": "20.x",
+    "@types/node": "^20.19.4",
+    "@types/vscode": "^1.101.0",
     "@typescript-eslint/eslint-plugin": "^8.31.1",
     "@typescript-eslint/parser": "^8.31.1",
-    "eslint": "^9.25.1",
-    "typescript": "^5.8.3",
     "@vscode/test-cli": "^0.0.10",
-    "@vscode/test-electron": "^2.5.2"
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^9.25.1",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "gtfs-realtime-bindings": "^1.1.1",
+    "node-fetch": "^2.7.0",
+    "protobufjs": "^7.5.3"
   }
 }
