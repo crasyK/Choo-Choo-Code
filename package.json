@@ -1,0 +1,91 @@
+{
+  "name": "choo-choo-code",
+  "displayName": "Choo-Choo-Code",
+  "description": "Real-time Deutsche Bahn delay alerts in your VS Code status bar. Track train departures and delays instantly.",
+  "version": "1.0.0",
+  "publisher": "crasyK",
+  "author": {
+    "name": "crasyK"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/crasyK/choo-choo-code.git"
+  },
+  "bugs": {
+    "url": "https://github.com/crasyK/choo-choo-code/issues"
+  },
+  "homepage": "https://github.com/crasyK/choo-choo-code#readme",
+  "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#1e1e1e",
+    "theme": "dark"
+  },
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "deutsche bahn",
+    "train",
+    "delay",
+    "transport",
+    "germany",
+    "real-time",
+    "status bar"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "choochoo.changeTrain",
+        "title": "Choo-Choo-Code: Change Train"
+      }
+    ],
+    "configuration": {
+      "title": "Choo-Choo-Code",
+      "properties": {
+        "choochoo.trainNumber": {
+          "type": "string",
+          "default": "",
+          "description": "The train number to track, e.g., 'ICE 76'."
+        },
+        "choochoo.origin": {
+          "type": "string",
+          "default": "",
+          "description": "The name of the origin station."
+        },
+        "choochoo.pollIntervalSec": {
+          "type": "number",
+          "default": 60,
+          "minimum": 30,
+          "description": "The interval in seconds to poll for updates."
+        },
+        "choochoo.notify": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show a desktop notification when the train's status changes."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "dependencies": {
+    "db-vendo-client": "^6.8.2"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.90.0",
+    "@types/node": "^18.0.0",
+    "typescript": "^5.4.0",
+    "@vscode/test-electron": "^2.3.9"
+  }
+}
